@@ -1,4 +1,4 @@
-# vue3-bms
+# bms
 
 ## Project setup
 ```
