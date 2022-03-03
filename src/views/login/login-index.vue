@@ -36,7 +36,7 @@ export default defineComponent({
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: left bottom, right bottom;
-    background-size: 750px, 750px;
+    background-size: 1000px, 1000px;
     background-image: url("../../assets/left.svg"),
       url("../../assets/right.svg");
   }

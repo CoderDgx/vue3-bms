@@ -7,7 +7,7 @@
             <el-icon><avatar /></el-icon>账号登录
           </div>
         </template>
-        <login-account v-model="account" ref="acount" />
+        <login-account v-model="account" ref="accountRef" />
       </el-tab-pane>
       <el-tab-pane>
         <template #label>
@@ -19,17 +19,20 @@
       </el-tab-pane>
     </el-tabs>
     <div class="other-option">
-      <el-checkbox>记住密码</el-checkbox>
+      <el-checkbox v-model="isKeep">记住密码</el-checkbox>
       <el-link type="primary">忘记密码</el-link>
     </div>
-    <el-button type="primary" class="login-btn">立即登录</el-button>
+    <el-button type="primary" @click="loginAction" class="login-btn"
+      >立即登录</el-button
+    >
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import LoginAccount from "./login-account.vue";
 import LoginPhone from "./login-phone.vue";
+import LocalStorage from "@/utils/storage";
 
 export default defineComponent({
   components: {
@@ -37,12 +40,25 @@ export default defineComponent({
     LoginPhone,
   },
   setup() {
+    const currentTab = ref("account");
+    const isKeep = ref(true);
+    const user = LocalStorage.getValue("name") ?? "";
     const account = reactive({
-      name: "",
-      password: "",
+      name: user.name,
+      password: user.password,
     });
+    const accountRef = ref<InstanceType<typeof LoginAccount>>();
+    const loginAction = () => {
+      if (currentTab.value === "account") {
+        accountRef.value?.accountLoginAction(isKeep.value);
+      }
+    };
     return {
+      currentTab,
       account,
+      isKeep,
+      loginAction,
+      accountRef,
     };
   },
 });
@@ -50,7 +66,7 @@ export default defineComponent({
 
 <style scoped lang="less">
 .login-panel {
-  width: 320px;
+  width: 400px;
   .title {
     display: flex;
     justify-content: center;

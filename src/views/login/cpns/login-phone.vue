@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="account" ref="formref" :rules="accountRulesPhone">
+  <el-form :model="account" ref="formref-phone" :rules="accountRulesPhone">
     <el-form-item label="手机号" prop="phoneNumber">
       <el-input v-model="account.phoneNumber" />
     </el-form-item>
