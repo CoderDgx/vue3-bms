@@ -1,6 +1,5 @@
 <template>
   <div class="login">
-    <div class="background"></div>
     <div class="login-panel">
       <h1>后台管理系统</h1>
       <login-panel />
@@ -27,19 +26,7 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   min-height: 100vh;
-
-  .background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: left bottom, right bottom;
-    background-size: 1000px, 1000px;
-    background-image: url("../../assets/left.svg"),
-      url("../../assets/right.svg");
-  }
+  background: url("../../assets/login-bg.svg");
 
   .login-panel {
     text-align: center;

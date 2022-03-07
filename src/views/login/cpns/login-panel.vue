@@ -79,6 +79,7 @@ export default defineComponent({
 .other-option {
   display: flex;
   justify-content: space-between;
+  margin: 5px 0;
 }
 .login-btn {
   width: 100%;

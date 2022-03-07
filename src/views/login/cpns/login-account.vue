@@ -69,7 +69,7 @@ export default defineComponent({
           }
 
           // 登录验证
-          store.dispatch("login/accountLoginAction", { ...account });
+          store.dispatch("login/accountLoginAction", { name, password });
         } else {
           ElMessage.error("账号或者密码错误~");
         }
