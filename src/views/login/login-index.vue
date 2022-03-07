@@ -1,8 +1,10 @@
 <template>
   <div class="login">
     <div class="background"></div>
-    <h1>后台管理系统</h1>
-    <login-panel />
+    <div class="login-panel">
+      <h1>后台管理系统</h1>
+      <login-panel />
+    </div>
   </div>
 </template>
 
@@ -23,9 +25,7 @@ export default defineComponent({
 <style scoped lang="less">
 .login {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
 
   .background {
@@ -39,6 +39,11 @@ export default defineComponent({
     background-size: 1000px, 1000px;
     background-image: url("../../assets/left.svg"),
       url("../../assets/right.svg");
+  }
+
+  .login-panel {
+    text-align: center;
+    margin-top: 70px;
   }
 }
 </style>

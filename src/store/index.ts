@@ -1,9 +1,18 @@
 import { createStore } from "vuex";
+import { RootState } from "./types";
 
-export default createStore({
-  state: {},
-  getters: {},
+import login from "./login/login";
+
+export default createStore<RootState>({
+  state() {
+    return {
+      name: "",
+      entireRoles: [],
+      entireDepartments: [],
+      entireMenus: [],
+    };
+  },
   mutations: {},
   actions: {},
-  modules: {},
+  modules: { login },
 });

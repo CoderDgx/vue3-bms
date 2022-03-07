@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, ref } from "vue";
+import { useStore } from "vuex";
 import { Account } from "../types";
 import { ElForm, ElMessage } from "element-plus";
 import LocalStorage from "@/utils/storage";
@@ -29,6 +30,7 @@ export default defineComponent({
   },
   emits: ["update:modelValue"],
   setup(props, { emit }) {
+    const store = useStore();
     const account = computed({
       get: () => props.modelValue,
       set: (newValue) => emit("update:modelValue", newValue),
@@ -65,6 +67,9 @@ export default defineComponent({
           } else {
             LocalStorage.setValue("name", { name, password: "" });
           }
+
+          // 登录验证
+          store.dispatch("login/accountLoginAction", { ...account });
         } else {
           ElMessage.error("账号或者密码错误~");
         }
