@@ -3,7 +3,7 @@ import { RootState } from "./types";
 
 import login from "./login/login";
 
-export default createStore<RootState>({
+const store = createStore<RootState>({
   state() {
     return {
       name: "",
@@ -16,3 +16,9 @@ export default createStore<RootState>({
   actions: {},
   modules: { login },
 });
+
+export function setupStore() {
+  store.dispatch("login/loadLocalStorage");
+}
+
+export default store;

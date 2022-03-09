@@ -8,6 +8,11 @@
         <el-header class="page-header">
           <nav-header @foldChange="foldChange" />
         </el-header>
+        <el-main class="page-content">
+          <div class="content">
+            <router-view></router-view>
+          </div>
+        </el-main>
       </el-container>
     </el-container>
   </div>

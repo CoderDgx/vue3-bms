@@ -9,6 +9,8 @@ import {
 } from "@/service/login";
 import localStorage from "@/utils/storage";
 import router from "@/router";
+import { menuMapToRoutes } from "@/utils/map-menus";
+import { RouteRecordRaw } from "vue-router";
 
 const login: Module<LoginState, RootState> = {
   namespaced: true,
@@ -30,6 +32,12 @@ const login: Module<LoginState, RootState> = {
     },
     saveUserMenus(state, userMenus: any) {
       state.userMenus = userMenus;
+
+      // 根据菜单映射路由
+      const routes = menuMapToRoutes(userMenus);
+      routes.forEach((route) => {
+        router.addRoute("main", route);
+      });
     },
   },
   actions: {
@@ -54,6 +62,21 @@ const login: Module<LoginState, RootState> = {
       localStorage.setValue("userMenus", userMenus);
 
       router.push("/main");
+    },
+    loadLocalStorage({ commit }) {
+      const token = localStorage.getValue("token");
+      if (token) {
+        commit("saveToken", token);
+        // dispatch("getInitalDataAction", null, { root: true });
+      }
+      const userInfo = localStorage.getValue("userInfo");
+      if (userInfo) {
+        commit("saveUserInfo", userInfo);
+      }
+      const userMenus = localStorage.getValue("userMenus");
+      if (userMenus) {
+        commit("saveUserMenus", userMenus);
+      }
     },
   },
 };

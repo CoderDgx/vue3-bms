@@ -5,21 +5,21 @@
       <el-icon v-else><fold /></el-icon>
     </i>
 
-    <!-- <div class="content">
+    <div class="content">
       <bread-crumb></bread-crumb>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import useMenuIcon from "../hooks/useMenuIconHooks";
-// import BreadCrumb from "@/base-ui/breadcrumb";
+import BreadCrumb from "@/base-ui/breadcrumb";
 
 export default defineComponent({
-  // components: {
-  //   BreadCrumb,
-  // },
+  components: {
+    BreadCrumb,
+  },
   emits: ["foldChange"],
   setup(props, ctx) {
     const [isFold, handleFoldClick] = useMenuIcon({ emit: ctx.emit });

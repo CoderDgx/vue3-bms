@@ -20,7 +20,10 @@
               <span>{{ item.name }}</span>
             </template>
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id + ''">
+              <el-menu-item
+                :index="subitem.id + ''"
+                @click="handleItemClick(subitem)"
+              >
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
             </template>
@@ -37,8 +40,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import ItemIcon from "./item-icon.vue";
 
 export default defineComponent({
@@ -53,9 +57,17 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+    const history = useRouter();
     const menus = store.state.login.userMenus;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleItemClick = (item: any) => {
+      history.push({
+        path: item.url ?? "/not-found",
+      });
+    };
     return {
       menus,
+      handleItemClick,
     };
   },
 });
