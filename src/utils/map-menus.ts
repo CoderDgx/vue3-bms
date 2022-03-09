@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { RouteRecordRaw } from "vue-router";
+import { Breadcrumb } from "@/base-ui/breadcrumb/types";
 
 let firstMenu: any = undefined;
 let firstRoute: RouteRecordRaw | undefined = undefined;
@@ -34,6 +35,31 @@ export function menuMapToRoutes(userMenus: any[]) {
   _recurseGetRoute(userMenus);
 
   return routes;
+}
+
+export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
+  const breadcrumbs: Breadcrumb[] = [];
+  pathMapToMenu(userMenus, currentPath, breadcrumbs);
+  return breadcrumbs;
+}
+
+export function pathMapToMenu(
+  userMenus: any[],
+  currentPath: string,
+  breadcrumbs?: Breadcrumb[]
+): any {
+  for (const menu of userMenus) {
+    if (menu.type === 1) {
+      const findMenu = pathMapToMenu(menu.children ?? [], currentPath);
+      if (findMenu) {
+        breadcrumbs?.push({ name: menu.name, path: "/" });
+        breadcrumbs?.push({ name: findMenu.name, path: "/" });
+        return findMenu;
+      }
+    } else if (menu.type === 2 && menu.url === currentPath) {
+      return menu;
+    }
+  }
 }
 
 export { firstMenu, firstRoute };

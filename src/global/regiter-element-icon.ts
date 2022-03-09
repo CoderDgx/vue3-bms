@@ -9,6 +9,10 @@ import {
   Setting,
   Goods,
   ChatDotRound,
+  CircleCloseFilled,
+  Unlock,
+  Bell,
+  Postcard,
 } from "@element-plus/icons-vue";
 
 export const icons = [
@@ -20,6 +24,10 @@ export const icons = [
   Setting,
   Goods,
   ChatDotRound,
+  CircleCloseFilled,
+  Unlock,
+  Bell,
+  Postcard,
 ];
 
 //按需导出图标组件
