@@ -13,6 +13,8 @@ import {
   Unlock,
   Bell,
   Postcard,
+  Search,
+  RefreshRight,
 } from "@element-plus/icons-vue";
 
 export const icons = [
@@ -28,6 +30,8 @@ export const icons = [
   Unlock,
   Bell,
   Postcard,
+  Search,
+  RefreshRight,
 ];
 
 //按需导出图标组件
