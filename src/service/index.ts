@@ -3,7 +3,7 @@ import AxiosRequest from "./request";
 import localStorage from "@/utils/storage";
 
 const request = new AxiosRequest({
-  baseURL: "api/",
+  baseURL: "/api",
   timeout: 10000,
   interceptorHooks: {
     requestInterceptor: (config) => {

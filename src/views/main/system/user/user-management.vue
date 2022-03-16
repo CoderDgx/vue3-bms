@@ -5,7 +5,11 @@
       @queryBtnClick="handleQueryClick"
       @resetBtnClick="handleResetClick"
     />
-    <page-content />
+    <page-content
+      ref="pageContentRef"
+      :contentConfig="contentTableConfig"
+      pageName="users"
+    ></page-content>
   </div>
 </template>
 
@@ -15,6 +19,7 @@ import PageSearch from "@/components/page-search";
 import PageContent from "@/components/page-content";
 
 import { searchFormConfig } from "./config/search.config";
+import { contentTableConfig } from "./config/content.config";
 
 export default defineComponent({
   components: {
@@ -23,7 +28,7 @@ export default defineComponent({
   },
 
   setup() {
-    return { searchFormConfig };
+    return { searchFormConfig, contentTableConfig };
   },
 });
 </script>

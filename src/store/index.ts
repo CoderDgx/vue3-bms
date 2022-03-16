@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import { RootState } from "./types";
 
 import login from "./login/login";
+import system from "./main/system/system";
 
 const store = createStore<RootState>({
   state() {
@@ -14,7 +15,7 @@ const store = createStore<RootState>({
   },
   mutations: {},
   actions: {},
-  modules: { login },
+  modules: { login, system },
 });
 
 export function setupStore() {
