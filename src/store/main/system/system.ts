@@ -31,6 +31,12 @@ const systemModule: Module<SystemState, RootState> = {
     changeUsersList(state, userList: any) {
       state.usersList = userList;
     },
+    changeGoodsTotalCount(state, totalCount: number) {
+      state.goodsTotalCount = totalCount;
+    },
+    changeGoodsList(state, goodsList: any) {
+      state.goodsList = goodsList;
+    },
   },
   getters: {
     pageListData(state) {
@@ -55,10 +61,15 @@ const systemModule: Module<SystemState, RootState> = {
         pageUrl,
         payload.queryInfo
       );
+      console.log(totalCount);
       switch (payload.pageName) {
         case "users":
           commit("changeUsersTotalCount", totalCount);
           commit("changeUsersList", list);
+          break;
+        case "goods":
+          commit("changeGoodsTotalCount", totalCount);
+          commit("changeGoodsList", list);
           break;
       }
     },

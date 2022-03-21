@@ -19,11 +19,11 @@
 
       <template #status="scope">
         <el-button
-          :type="scope.row.enable ? 'success' : 'danger'"
+          :type="statusCode(scope.row, pageName) ? 'success' : 'danger'"
           size="mini"
           plain
         >
-          {{ $filters.showStatus(scope.row.enable) }}
+          {{ $filters.showStatus(statusCode(scope.row, pageName), pageName) }}
         </el-button>
       </template>
       <template #create="scope">
@@ -101,6 +101,15 @@ export default defineComponent({
     });
     watch(pageInfo, () => getPageData());
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const statusCode = (rowItem: any, pageName: string) => {
+      switch (pageName) {
+        case "users":
+          return rowItem.enable;
+        case "goods":
+          return rowItem.status;
+      }
+    };
     let otherQueryInfo = {};
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const getPageData = (otherInfo: any = {}) => {
@@ -144,6 +153,7 @@ export default defineComponent({
       totalCount,
       getPageData,
       otherPropSlots,
+      statusCode,
       isDelete,
       isUpdate,
       isCreate,

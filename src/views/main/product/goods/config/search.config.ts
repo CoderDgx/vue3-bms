@@ -5,22 +5,15 @@ export const searchFormConfig: FormTypes = {
     {
       field: "name",
       type: "input",
-      label: "用户名",
-      placeHolder: "请输入用户名",
+      label: "商品名称",
+      placeHolder: "请输入商品名称",
       rules: [],
     },
     {
-      field: "realname",
+      field: "address",
       type: "input",
-      label: "真实姓名",
-      placeHolder: "请输入真实姓名",
-      rules: [],
-    },
-    {
-      field: "cellphone",
-      type: "input",
-      label: "手机号码",
-      placeHolder: "请输入手机号码",
+      label: "商品地址",
+      placeHolder: "请输入商品地址",
       rules: [],
     },
     {
@@ -30,8 +23,8 @@ export const searchFormConfig: FormTypes = {
       placeHolder: "请选择状态",
       rules: [],
       options: [
-        { label: "启用", value: 1 },
-        { label: "禁用", value: 0 },
+        { label: "可用", value: 1 },
+        { label: "下架", value: 0 },
       ],
     },
     {
@@ -48,4 +41,5 @@ export const searchFormConfig: FormTypes = {
   ],
   labelWidth: "100px",
   itemStyle: { padding: "10px 40px" },
+  colLayout: { span: 8 },
 };
