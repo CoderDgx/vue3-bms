@@ -27,6 +27,7 @@
                 <el-select
                   v-model="formData[`${item.field}`]"
                   :placeholder="item.placeHolder"
+                  clearable
                   style="width: 100%"
                 >
                   <el-option

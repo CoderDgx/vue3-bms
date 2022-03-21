@@ -21,6 +21,8 @@ import PageContent from "@/components/page-content";
 import { searchFormConfig } from "./config/search.config";
 import { contentTableConfig } from "./config/content.config";
 
+import { usePageSearch } from "@/hooks/usePageSearch";
+
 export default defineComponent({
   components: {
     PageSearch,
@@ -28,7 +30,15 @@ export default defineComponent({
   },
 
   setup() {
-    return { searchFormConfig, contentTableConfig };
+    const [pageContentRef, handleQueryClick, handleResetClick] =
+      usePageSearch();
+    return {
+      searchFormConfig,
+      contentTableConfig,
+      handleQueryClick,
+      handleResetClick,
+      pageContentRef,
+    };
   },
 });
 </script>

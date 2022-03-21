@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from "vue";
+import { defineComponent, PropType } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import ItemIcon from "./item-icon.vue";

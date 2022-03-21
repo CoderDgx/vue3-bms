@@ -55,7 +55,6 @@ export default defineComponent({
       emit("resetBtnClick");
     };
     const handleQueryClick = () => {
-      console.log({ ...formData.value });
       emit("queryBtnClick", formData.value);
     };
     return { formData, handleResetClick, handleQueryClick };

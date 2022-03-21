@@ -1,5 +1,5 @@
 <template>
-  <div class="hy-table">
+  <div class="table">
     <div class="header">
       <slot name="header">
         <div class="title">{{ title }}</div>
@@ -105,7 +105,6 @@ export default defineComponent({
   emits: ["selectionChange", "update:page"],
   setup(props, { emit }) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    console.log(props);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const selectionChange = (value: any) => {
       if (props.showSelectColumn) {

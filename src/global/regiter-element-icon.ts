@@ -15,6 +15,8 @@ import {
   Postcard,
   Search,
   RefreshRight,
+  Edit,
+  Delete,
 } from "@element-plus/icons-vue";
 
 export const icons = [
@@ -32,6 +34,8 @@ export const icons = [
   Postcard,
   Search,
   RefreshRight,
+  Edit,
+  Delete,
 ];
 
 //按需导出图标组件

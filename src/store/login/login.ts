@@ -10,7 +10,6 @@ import {
 import localStorage from "@/utils/storage";
 import router from "@/router";
 import { menuMapToRoutes } from "@/utils/map-menus";
-import { RouteRecordRaw } from "vue-router";
 
 const login: Module<LoginState, RootState> = {
   namespaced: true,

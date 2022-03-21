@@ -37,19 +37,20 @@
           <el-button
             v-if="isUpdate"
             type="text"
-            icon="el-icon-edit"
             size="mini"
             @click="handleEditClick(scope.row)"
           >
+            <el-icon><edit /></el-icon>
             编辑
           </el-button>
           <el-button
             v-if="isDelete"
             type="text"
-            icon="el-icon-delete"
             size="mini"
+            style="color: red"
             @click="handleDeleteClick(scope.row)"
           >
+            <el-icon><delete /></el-icon>
             删除
           </el-button>
         </div>
@@ -88,6 +89,9 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const isCreate = true;
+    const isDelete = true;
+    const isUpdate = true;
     // 1.请求页面数据
     const store = useStore();
 
@@ -134,7 +138,16 @@ export default defineComponent({
       });
     });
 
-    return { pageInfo, pageListData, totalCount, getPageData, otherPropSlots };
+    return {
+      pageInfo,
+      pageListData,
+      totalCount,
+      getPageData,
+      otherPropSlots,
+      isDelete,
+      isUpdate,
+      isCreate,
+    };
   },
 });
 </script>

@@ -30,8 +30,8 @@ export const searchFormConfig: FormTypes = {
       placeHolder: "请选择状态",
       rules: [],
       options: [
-        { label: "启用", value: 1 },
-        { label: "禁用", value: 0 },
+        { label: "启用", value: "启用" },
+        { label: "禁用", value: "禁用" },
       ],
     },
     {
