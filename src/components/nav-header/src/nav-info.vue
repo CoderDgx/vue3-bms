@@ -4,7 +4,6 @@
       <el-dropdown>
         <span class="el-dropdown-link">
           <el-avatar
-            size="medium"
             class="avatar"
             src="https://upload.jianshu.io/users/upload_avatars/1102036/c3628b478f06.jpeg"
           ></el-avatar>

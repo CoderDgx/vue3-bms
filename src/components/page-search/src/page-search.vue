@@ -3,11 +3,11 @@
     <Form v-bind="searchConfig" v-model="formData">
       <template #footer>
         <div class="btns">
-          <el-button size="medium" @click="handleResetClick"
+          <el-button @click="handleResetClick"
             ><el-icon class="icon" size="medium"><refresh-right /></el-icon
             >重置</el-button
           >
-          <el-button size="medium" type="primary" @click="handleQueryClick">
+          <el-button type="primary" @click="handleQueryClick">
             <el-icon class="icon" size="medium"><search /></el-icon
             >查询</el-button
           >

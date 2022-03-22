@@ -3,7 +3,7 @@ import { Module } from "vuex";
 import { SystemState, PagePayload } from "./types";
 import { RootState } from "../../types";
 
-import { getPageList } from "@/service/main/system";
+import { getPageList, deletePageData } from "@/service/main/system";
 
 const systemModule: Module<SystemState, RootState> = {
   namespaced: true,
@@ -107,6 +107,18 @@ const systemModule: Module<SystemState, RootState> = {
           commit("changeGoodsList", list);
           break;
       }
+    },
+
+    async deletePageDataAction({ dispatch }, payload: PagePayload) {
+      const pageName = payload.pageName;
+      const deleteId = payload.id;
+      if (!deleteId) return;
+      const pageUrl = `/${pageName}/${deleteId}`;
+      await deletePageData(pageUrl);
+      dispatch("getPageListDataAction", {
+        pageName: payload.pageName,
+        queryInfo: { offset: 0, size: 10 },
+      });
     },
   },
 };

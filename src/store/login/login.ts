@@ -9,7 +9,7 @@ import {
 } from "@/service/login";
 import localStorage from "@/utils/storage";
 import router from "@/router";
-import { menuMapToRoutes } from "@/utils/map-menus";
+import { menuMapToRoutes, menuMapToPermissions } from "@/utils/map-menus";
 
 const login: Module<LoginState, RootState> = {
   namespaced: true,
@@ -36,7 +36,9 @@ const login: Module<LoginState, RootState> = {
       const routes = menuMapToRoutes(userMenus);
       routes.forEach((route) => {
         router.addRoute("main", route);
-      });
+      }); // 检查按钮的权限
+      const permissions = menuMapToPermissions(userMenus);
+      state.permissions = permissions;
     },
   },
   actions: {
@@ -59,6 +61,8 @@ const login: Module<LoginState, RootState> = {
       const userMenus = await getUserMenus(userInfo.role.id);
       commit("saveUserMenus", userMenus);
       localStorage.setValue("userMenus", userMenus);
+
+      this.dispatch("getInitalDataAction", null, { root: true });
 
       router.push("/main");
     },

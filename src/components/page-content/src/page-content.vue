@@ -7,12 +7,7 @@
       v-model:page="pageInfo"
     >
       <template #headerHandler>
-        <el-button
-          v-if="isCreate"
-          type="primary"
-          size="medium"
-          @click="handleNewData"
-        >
+        <el-button v-if="isCreate" type="primary" @click="handleNewData">
           {{ contentConfig.newBtnTitle ?? "新建数据" }}
         </el-button>
       </template>
@@ -20,7 +15,7 @@
       <template #status="scope">
         <el-button
           :type="statusCode(scope.row, pageName) ? 'success' : 'danger'"
-          size="mini"
+          size="small"
           plain
         >
           {{ $filters.showStatus(statusCode(scope.row, pageName), pageName) }}
@@ -37,7 +32,7 @@
           <el-button
             v-if="isUpdate"
             type="text"
-            size="mini"
+            size="small"
             @click="handleEditClick(scope.row)"
           >
             <el-icon><edit /></el-icon>
@@ -46,7 +41,7 @@
           <el-button
             v-if="isDelete"
             type="text"
-            size="mini"
+            size="small"
             style="color: red"
             @click="handleDeleteClick(scope.row)"
           >
@@ -72,6 +67,8 @@
 import { computed, defineComponent, ref, watch } from "vue";
 import { useStore } from "vuex";
 
+import { usePermission } from "@/hooks/usePermission";
+
 import Table from "@/base-ui/table";
 
 export default defineComponent({
@@ -88,10 +85,11 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
-    const isCreate = true;
-    const isDelete = true;
-    const isUpdate = true;
+  setup(props, { emit }) {
+    const isCreate = usePermission(props.pageName, "create");
+    const isDelete = usePermission(props.pageName, "delete");
+    const isUpdate = usePermission(props.pageName, "update");
+    const isQuery = usePermission(props.pageName, "query");
     // 1.请求页面数据
     const store = useStore();
 
@@ -147,6 +145,29 @@ export default defineComponent({
       });
     });
 
+    // 5.删除操作
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleDeleteClick = (rowItem: any) => {
+      store.dispatch("system/deletePageDataAction", {
+        pageName: props.pageName,
+        queryInfo: {
+          offset: pageInfo.value.currentPage * pageInfo.value.pageSize,
+          size: pageInfo.value.pageSize,
+          ...otherQueryInfo,
+        },
+        id: rowItem.id,
+      });
+    };
+
+    // 6.新建数据
+    const handleNewData = () => {
+      emit("newBtnClick");
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleEditClick = (item: any) => {
+      emit("editBtnClick", item);
+    };
+
     return {
       pageInfo,
       pageListData,
@@ -157,6 +178,10 @@ export default defineComponent({
       isDelete,
       isUpdate,
       isCreate,
+      isQuery,
+      handleDeleteClick,
+      handleEditClick,
+      handleNewData,
     };
   },
 });

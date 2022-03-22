@@ -5,14 +5,14 @@
       <span v-show="!collapse" class="title">vue3-bms</span>
     </div>
     <el-menu
-      :default-active="1"
+      :default-active="'1'"
       class="el-menu-vertical"
       background-color="#0c2135"
       :collapse="collapse"
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
     >
-      <template v-for="item in menus" :key="(item, id)">
+      <template v-for="item in menus" :key="item.id">
         <template v-if="item.children && item.children.length">
           <el-sub-menu :index="item.id + ''">
             <template #title>

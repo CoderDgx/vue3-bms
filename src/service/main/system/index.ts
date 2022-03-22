@@ -7,3 +7,9 @@ export function getPageList(pageUrl: string, queryInfo: any) {
     data: queryInfo,
   });
 }
+
+export function deletePageData(pageUrl: string) {
+  return request.delete({
+    url: pageUrl,
+  });
+}
