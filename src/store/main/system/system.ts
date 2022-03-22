@@ -31,6 +31,24 @@ const systemModule: Module<SystemState, RootState> = {
     changeUsersList(state, userList: any) {
       state.usersList = userList;
     },
+    changeDepartmentTotalCount(state, totalCount: number) {
+      state.departmentTotalCount = totalCount;
+    },
+    changeDepartmentList(state, departmentList: any) {
+      state.departmentList = departmentList;
+    },
+    changeCategoryTotalCount(state, totalCount: number) {
+      state.categoryTotalCount = totalCount;
+    },
+    changeCategoryList(state, categoryList: any) {
+      state.categoryList = categoryList;
+    },
+    changeRoleTotalCount(state, totalCount: number) {
+      state.roleTotalCount = totalCount;
+    },
+    changeRoleList(state, roleList: any) {
+      state.roleList = roleList;
+    },
     changeGoodsTotalCount(state, totalCount: number) {
       state.goodsTotalCount = totalCount;
     },
@@ -61,11 +79,22 @@ const systemModule: Module<SystemState, RootState> = {
         pageUrl,
         payload.queryInfo
       );
-      console.log(totalCount);
       switch (payload.pageName) {
         case "users":
           commit("changeUsersTotalCount", totalCount);
           commit("changeUsersList", list);
+          break;
+        case "department":
+          commit("changeDepartmentTotalCount", totalCount);
+          commit("changeDepartmentList", list);
+          break;
+        case "role":
+          commit("changeRoleTotalCount", totalCount);
+          commit("changeRoleList", list);
+          break;
+        case "category":
+          commit("changeCategoryTotalCount", totalCount);
+          commit("changeCategoryList", list);
           break;
         case "goods":
           commit("changeGoodsTotalCount", totalCount);
