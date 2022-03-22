@@ -49,6 +49,9 @@ const systemModule: Module<SystemState, RootState> = {
     changeRoleList(state, roleList: any) {
       state.roleList = roleList;
     },
+    changeMenuList(state, menuList: any) {
+      state.menuList = menuList;
+    },
     changeGoodsTotalCount(state, totalCount: number) {
       state.goodsTotalCount = totalCount;
     },
@@ -91,6 +94,9 @@ const systemModule: Module<SystemState, RootState> = {
         case "role":
           commit("changeRoleTotalCount", totalCount);
           commit("changeRoleList", list);
+          break;
+        case "menu":
+          commit("changeMenuList", list);
           break;
         case "category":
           commit("changeCategoryTotalCount", totalCount);
